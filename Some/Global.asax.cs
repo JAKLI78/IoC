@@ -24,7 +24,7 @@ namespace Some
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            
+            BootstrapContanier();
         }
 
         private static void BootstrapContanier()
