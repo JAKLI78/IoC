@@ -57,7 +57,7 @@ namespace TestLibrary
 
         private Type[] GetPublicClassesForApplicationAssembly(Predicate<Type> where)
         {
-            return typeof(HomeController).Assembly.GetExportedTypes()
+            return typeof(IController).Assembly.GetExportedTypes()
                 .Where(t => t.IsClass)
                 .Where(t => t.IsAbstract == false)
                 .Where(where.Invoke)

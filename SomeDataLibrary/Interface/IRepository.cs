@@ -13,5 +13,6 @@ namespace SomeDataLibrary.Interface
         void Remove(TEntity item);
         void Update(TEntity item);
         
+        
     }
 }
