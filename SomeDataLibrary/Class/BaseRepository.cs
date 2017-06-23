@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
+using SomeDataLibrary.Interface;
 
-namespace Some.Repository
+namespace SomeDataLibrary.Class
 {
-    public class BaseRepository<TEntity>: IRepository<TEntity> where TEntity :class
+    class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private DbContext _context;
         private DbSet<TEntity> _dbSet;
@@ -57,7 +59,7 @@ namespace Some.Repository
         }
 
         public IEnumerable<TEntity> GetWithInclude(Func<TEntity, bool> predicate,
-            params Expression<Func<TEntity,Object>>[] includeProperties)
+            params Expression<Func<TEntity, Object>>[] includeProperties)
         {
             var query = Include(includeProperties);
             return query.Where(predicate).ToList();
@@ -67,6 +69,7 @@ namespace Some.Repository
         {
             IQueryable<TEntity> query = _dbSet.AsNoTracking();
             return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
         }
     }
 }
