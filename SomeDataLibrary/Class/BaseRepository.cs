@@ -9,7 +9,7 @@ using SomeDataLibrary.Interface;
 
 namespace SomeDataLibrary.Class
 {
-    class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private DbContext _context;
         private DbSet<TEntity> _dbSet;
