@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Some.Models
+namespace SomeDataLibrary.Model
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class SomeEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public SomeEntities()
+            : base("name=SomeEntities")
         {
         }
     
