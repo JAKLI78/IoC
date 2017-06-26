@@ -1,6 +1,4 @@
-﻿using System.Net.Mail;
-
-namespace SomeLogicLibrary.Interface
+﻿namespace SomeLogicLibrary.Interface
 {
     public interface INotificator
     {
