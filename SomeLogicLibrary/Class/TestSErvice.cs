@@ -25,7 +25,7 @@ namespace SomeLogicLibrary.Class
         {
             this._container = container;
             container.Install(FromAssembly.Named("SomeLogicLibrary"));
-            var context = container.Resolve<SomeEntities>();
+            var context = container.Resolve<DataContext>();
             _userRepository = container.Resolve<IUserRepository>(new {context});
             _notificators = container.ResolveAll<INotificator>();
             _companyRepository = container.Resolve<ICompanyRepository>(new { context });
@@ -39,7 +39,7 @@ namespace SomeLogicLibrary.Class
             foreach (var notificator in _notificators)
             {
                 notificator.Send(
-                    $"user {_userRepository.FindById(userId).Name} now working in company {_companyRepository.FindById(companyId).Company1}");
+                    $"user {_userRepository.FindById(userId).Name} now working in company {_companyRepository.FindById(companyId).CompanyName}");
             }
         }
 
@@ -53,7 +53,7 @@ namespace SomeLogicLibrary.Class
         public List<string> GetCompanysIdAndNames()
         {
             List<string> resulList = new EditableList<string>();
-            resulList.AddRange(_companyRepository.Get().Select(company => company.Company1));
+            resulList.AddRange(_companyRepository.Get().Select(company => company.CompanyName));
             return resulList;
         }
     }        

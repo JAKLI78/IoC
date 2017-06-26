@@ -19,7 +19,7 @@ namespace SomeLogicLibrary.Installers
             container.Register(Component
                 .For<SomeDataLibrary.Interface.ICompanyRepository>()
                 .ImplementedBy<SomeDataLibrary.Class.CompanyRepository>());
-            container.Register(Component.For<SomeDataLibrary.Model.SomeEntities>());
+            container.Register(Component.For<SomeDataLibrary.Model.DataContext>());
         }
     }
 }

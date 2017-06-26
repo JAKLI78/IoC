@@ -246,9 +246,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SomeLogicLibrary\SomeLogicLibrary.csproj">
+    <ProjectReference Include="..\SomeLogicLibrary\Some.Core.csproj">
       <Project>{4bf90eaf-06ec-4f7f-bb46-7657cedc46cb}</Project>
-      <Name>SomeLogicLibrary</Name>
+      <Name>Some.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

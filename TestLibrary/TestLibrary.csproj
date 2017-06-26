@@ -69,9 +69,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Some\Some.csproj">
+    <ProjectReference Include="..\Some\Some.Web.csproj">
       <Project>{73c1800b-00dc-45c8-aba0-30a83d7c6f3d}</Project>
-      <Name>Some</Name>
+      <Name>Some.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

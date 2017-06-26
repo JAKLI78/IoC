@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Some", "Some\Some.csproj", "{73C1800B-00DC-45C8-ABA0-30A83D7C6F3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Some.Web", "Some\Some.Web.csproj", "{73C1800B-00DC-45C8-ABA0-30A83D7C6F3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibrary", "TestLibrary\TestLibrary.csproj", "{F41263B4-FB8E-424A-BD27-AA0A028030BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeDataLibrary", "SomeDataLibrary\SomeDataLibrary.csproj", "{996D6CD9-9650-49E1-BC8F-17D3B3EF8A77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Some.Data", "SomeDataLibrary\Some.Data.csproj", "{996D6CD9-9650-49E1-BC8F-17D3B3EF8A77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeLogicLibrary", "SomeLogicLibrary\SomeLogicLibrary.csproj", "{4BF90EAF-06EC-4F7F-BB46-7657CEDC46CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Some.Core", "SomeLogicLibrary\Some.Core.csproj", "{4BF90EAF-06EC-4F7F-BB46-7657CEDC46CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

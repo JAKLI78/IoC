@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using SomeDataLibrary.Interface;
 using SomeDataLibrary.Model;
@@ -17,7 +16,7 @@ namespace SomeDataLibrary.Class
         public void AddUserToCompany(int companyID,int userID)
         {
             var userToUpdate = FindById(userID);
-            userToUpdate.Company = companyID;
+            userToUpdate.CompanyId = companyID;
             Update(userToUpdate);
         }
 

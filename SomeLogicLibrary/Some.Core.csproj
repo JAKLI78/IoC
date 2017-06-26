@@ -62,9 +62,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SomeDataLibrary\SomeDataLibrary.csproj">
+    <ProjectReference Include="..\SomeDataLibrary\Some.Data.csproj">
       <Project>{996d6cd9-9650-49e1-bc8f-17d3b3ef8a77}</Project>
-      <Name>SomeDataLibrary</Name>
+      <Name>Some.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
