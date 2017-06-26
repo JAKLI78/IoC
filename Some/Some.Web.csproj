@@ -168,7 +168,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\SomeBaseController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,6 +175,10 @@
     <Compile Include="Installers\ControllerInstaller.cs" />
     <Compile Include="Installers\LoggerInsteller.cs" />
     <Compile Include="Installers\LogicInstaller.cs" />
+    <Compile Include="Models\AllView.cs" />
+    <Compile Include="Models\CompanyView.cs" />
+    <Compile Include="Models\UserToCompanyView.cs" />
+    <Compile Include="Models\UserView.cs" />
     <Compile Include="Plumbing\WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -218,14 +221,12 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Base\Index.cshtml" />
     <Content Include="Views\Test\Base.cshtml" />
     <Content Include="Views\AfterAddToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -246,6 +247,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SomeDataLibrary\Some.Data.csproj">
+      <Project>{996D6CD9-9650-49E1-BC8F-17D3B3EF8A77}</Project>
+      <Name>Some.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SomeLogicLibrary\Some.Core.csproj">
       <Project>{4bf90eaf-06ec-4f7f-bb46-7657cedc46cb}</Project>
       <Name>Some.Core</Name>

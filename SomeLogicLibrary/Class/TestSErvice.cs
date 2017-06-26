@@ -1,35 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Castle.Components.DictionaryAdapter;
-using Castle.Windsor;
-using Castle.Windsor.Installer;
 using SomeDataLibrary.Interface;
-using SomeDataLibrary.Model;
 using SomeLogicLibrary.Interface;
 
 namespace SomeLogicLibrary.Class
 {
     public class TestService :ITestService
     {
-        private  IWindsorContainer _container;
         private readonly IUserRepository _userRepository;
         private readonly ICompanyRepository _companyRepository;
         private readonly INotificator[] _notificators;
 
-        public TestService(IWindsorContainer container)
+        public TestService(INotificator[] notificators,IUserRepository userRepository,ICompanyRepository companyRepository)
         {
-            this._container = container;
-            container.Install(FromAssembly.Named("SomeLogicLibrary"));
-            var context = container.Resolve<DataContext>();
-            _userRepository = container.Resolve<IUserRepository>(new {context});
-            _notificators = container.ResolveAll<INotificator>();
-            _companyRepository = container.Resolve<ICompanyRepository>(new { context });
+            _notificators = notificators;
+            _userRepository = userRepository;
+            _companyRepository = companyRepository;
         }
 
-        public void SetCompanyToUser(string companyName, string userName)
+        public void SetCompanyToUser(int companyId, int userId)
         {
-            var userId = _userRepository.GetIdByName(userName);
-            var companyId = _companyRepository.GetCompanyIdByName(companyName);
+            
             _userRepository.AddUserToCompany(companyId,userId);
             foreach (var notificator in _notificators)
             {

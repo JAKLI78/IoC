@@ -4,7 +4,7 @@ namespace SomeLogicLibrary.Interface
 {
     public interface ITestService
     {
-        void SetCompanyToUser(string company, string user);
+        void SetCompanyToUser(int companyId, int userId);
         List<string> GetUsersIdAndNames();
         List<string> GetCompanysIdAndNames();
     }

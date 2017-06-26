@@ -1,29 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
+﻿using System.Web.Mvc;
+using Castle.Core;
+using Some.Models;
 using SomeLogicLibrary.Interface;
 
 namespace Some.Controllers
 {
-    public class TestController : Controller
+    public class TestController :BaseController 
     {
+        
+        public ITestService _testService
+        {
+            get;
+            set;
+        }
+
         // GET: Test
         public ActionResult Base()
         {
-            ViewBag.users = MvcApplication._service.GetUsersIdAndNames();
-            ViewBag.companys = MvcApplication._service.GetCompanysIdAndNames();
+            ViewBag.users = _testService.GetUsersIdAndNames();
+            ViewBag.companys = _testService.GetCompanysIdAndNames();
 
             return View();
         }
         [HttpPost]
-        public void AddToUser(FormCollection formCollection)
+        public void AddToUser(UserToCompanyView userToCompany)
         {
-            string some = formCollection["CompanyDropDown"];
-            string some2 = formCollection["UserDropDown"];
-            MvcApplication._service.SetCompanyToUser(some,some2);
+
+            _testService.SetCompanyToUser(userToCompany.CompanyID,userToCompany.UserID);
             
         }        
     }

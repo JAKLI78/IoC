@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using SomeLogicLibrary.Interface;
 
 namespace Some.Controllers
 {
     public class BaseController : Controller
     {
-        // GET: Base
-        public ActionResult Index()
-        {
-            ViewBag.users = MvcApplication._service.GetUsersIdAndNames();
-            ViewBag.companys = MvcApplication._service.GetCompanysIdAndNames();
-
-            return View();
-        }
+                     
     }
 }

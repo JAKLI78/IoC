@@ -6,10 +6,15 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Castle.MicroKernel;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Castle.Windsor.Diagnostics.Extensions;
 using Castle.Windsor.Installer;
+using Some.Controllers;
 using Some.Plumbing;
+using SomeDataLibrary.Interface;
+using SomeDataLibrary.Model;
 using SomeLogicLibrary.Interface;
 
 
@@ -18,8 +23,7 @@ namespace Some
     public class MvcApplication : System.Web.HttpApplication
     {
         private static IWindsorContainer _container;
-        public static ITestService _service;
-
+        
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -32,10 +36,19 @@ namespace Some
 
         private static void BootstrapContanier()
         {
-            _container = new WindsorContainer().Install(FromAssembly.This());
+            _container = new WindsorContainer();
+            _container.Kernel.Resolver.AddSubResolver(new CollectionResolver(_container.Kernel));
+            _container.Register(Component.For<System.Data.Entity.DbContext>().LifestyleTransient());
             var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
-            _service = _container.Resolve<ITestService>(new {container = _container});
+            _container.Install(FromAssembly.Named("SomeLogicLibrary"));
+            _container.Install(FromAssembly.This());
+
+
+            var some = "mkm";
+
+
+
         }
 
         protected void Application_End()

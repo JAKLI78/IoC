@@ -1,4 +1,5 @@
-﻿
+﻿@model Some.Models.AllView;
+
 @{
     Layout = null;
 }
@@ -14,8 +15,8 @@
 <div>
     @using (Html.BeginForm("AddToUser","Test"))
     {
-        <p>Company: @Html.DropDownList("CompanyDropDown",new SelectList(ViewBag.companys,"")) </p>
-        <p>user: @Html.DropDownList("UserDropDown", new SelectList(ViewBag.users)) </p>
+        <p>Company: @Html.DropDownList("CompanyDropDown",new SelectList(Model.CompanyViews,"Id","CompanyName")) </p>
+        <p>user: @Html.DropDownList("UserDropDown", new SelectList(Model.UserViews,"Id","Name")) </p>
         <button type="submit" value="Some"></button>
     }
 </div>
