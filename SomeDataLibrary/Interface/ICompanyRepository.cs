@@ -4,6 +4,6 @@ namespace SomeDataLibrary.Interface
 {
     public interface ICompanyRepository: IRepository<Company>
     {
-        int GetCompanyByName(string name);
+        int GetCompanyIdByName(string companyName);
     }
 }

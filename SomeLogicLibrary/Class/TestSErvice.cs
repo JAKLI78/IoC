@@ -16,46 +16,45 @@ namespace SomeLogicLibrary.Class
 {
     public class TestService :ITestService
     {
-        private  IWindsorContainer container;
-        private readonly IUserRepository userRepository;
-        private readonly ICompanyRepository companyRepository;
-        private INotificator[] notificators;
+        private  IWindsorContainer _container;
+        private readonly IUserRepository _userRepository;
+        private readonly ICompanyRepository _companyRepository;
+        private readonly INotificator[] _notificators;
 
         public TestService(IWindsorContainer container)
         {
-            this.container = container;
+            this._container = container;
             container.Install(FromAssembly.Named("SomeLogicLibrary"));
             var context = container.Resolve<SomeEntities>();
-            userRepository = container.Resolve<IUserRepository>(new {context});
-            notificators = container.ResolveAll<INotificator>();
-            companyRepository = container.Resolve<ICompanyRepository>(new { context });
+            _userRepository = container.Resolve<IUserRepository>(new {context});
+            _notificators = container.ResolveAll<INotificator>();
+            _companyRepository = container.Resolve<ICompanyRepository>(new { context });
         }
 
-        public void SetCompanyToUser(string company, string user)
+        public void SetCompanyToUser(string companyName, string userName)
         {
-            var userId = userRepository.GetIdByName(user);
-            var companyId = companyRepository.GetCompanyByName(company);
-            userRepository.AddCompany(companyId,userId);
-            foreach (var notificator in notificators)
+            var userId = _userRepository.GetIdByName(userName);
+            var companyId = _companyRepository.GetCompanyIdByName(companyName);
+            _userRepository.AddUserToCompany(companyId,userId);
+            foreach (var notificator in _notificators)
             {
                 notificator.Send(
-                    $"user {userRepository.FindById(userId).Name} now working in company {companyRepository.FindById(companyId).Company1}");
+                    $"user {_userRepository.FindById(userId).Name} now working in company {_companyRepository.FindById(companyId).Company1}");
             }
         }
 
         public  List<string> GetUsersIdAndNames()
         {
             List<string> resulList = new EditableList <string>();
-            resulList.AddRange(userRepository.Get().Select(user =>user.Name));
+            resulList.AddRange(_userRepository.Get().Select(user =>user.Name));
             return resulList;
         }
 
         public List<string> GetCompanysIdAndNames()
         {
             List<string> resulList = new EditableList<string>();
-            resulList.AddRange(companyRepository.Get().Select(company => company.Company1));
+            resulList.AddRange(_companyRepository.Get().Select(company => company.Company1));
             return resulList;
         }
-    }
-        
+    }        
 }

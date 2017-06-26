@@ -15,9 +15,9 @@ namespace SomeDataLibrary.Class
         {
         }
 
-        public int GetCompanyByName(string name)
+        public int GetCompanyIdByName(string companyName)
         {
-            return Get(c => c.Company1 == name).First().Id;
+            return Get(c => c.Company1 == companyName).First().Id;
         }
     }
 }

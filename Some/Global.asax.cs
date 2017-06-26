@@ -17,8 +17,8 @@ namespace Some
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static IWindsorContainer container;
-        public static ITestService Service;
+        private static IWindsorContainer _container;
+        public static ITestService _service;
 
         protected void Application_Start()
         {
@@ -32,15 +32,15 @@ namespace Some
 
         private static void BootstrapContanier()
         {
-            container = new WindsorContainer().Install(FromAssembly.This());
-            var controllerFactory = new WindsorControllerFactory(container.Kernel);
+            _container = new WindsorContainer().Install(FromAssembly.This());
+            var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
-            Service = container.Resolve<ITestService>(new {container});
+            _service = _container.Resolve<ITestService>(new {container = _container});
         }
 
         protected void Application_End()
         {
-            container.Dispose();
+            _container.Dispose();
         }
     }
     

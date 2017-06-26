@@ -13,10 +13,10 @@ namespace SomeLogicLibrary.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Castle.MicroKernel.Registration.Component
+            container.Register(Component
                 .For<SomeDataLibrary.Interface.IUserRepository>()
                 .ImplementedBy<SomeDataLibrary.Class.UserRepository>());
-            container.Register(Castle.MicroKernel.Registration.Component
+            container.Register(Component
                 .For<SomeDataLibrary.Interface.ICompanyRepository>()
                 .ImplementedBy<SomeDataLibrary.Class.CompanyRepository>());
             container.Register(Component.For<SomeDataLibrary.Model.SomeEntities>());

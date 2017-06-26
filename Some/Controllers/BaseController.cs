@@ -11,8 +11,9 @@ namespace Some.Controllers
         // GET: Base
         public ActionResult Index()
         {
-            ViewBag.users = MvcApplication.Service.GetUsersIdAndNames();
-            ViewBag.companys = MvcApplication.Service.GetCompanysIdAndNames();
+            ViewBag.users = MvcApplication._service.GetUsersIdAndNames();
+            ViewBag.companys = MvcApplication._service.GetCompanysIdAndNames();
+
             return View();
         }
     }

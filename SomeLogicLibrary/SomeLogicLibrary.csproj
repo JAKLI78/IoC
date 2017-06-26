@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="Class\EmailNotificator.cs" />
     <Compile Include="Class\SmsNotificator.cs" />
-    <Compile Include="Class\SomeLogicRegistry.cs" />
     <Compile Include="Class\TestService.cs" />
     <Compile Include="Installers\DataInstaller.cs" />
     <Compile Include="Installers\NotificatorInstaller.cs" />

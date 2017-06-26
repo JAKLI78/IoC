@@ -13,8 +13,9 @@ namespace Some.Controllers
         // GET: Test
         public ActionResult Base()
         {
-            ViewBag.users = MvcApplication.Service.GetUsersIdAndNames();
-            ViewBag.companys = MvcApplication.Service.GetCompanysIdAndNames();
+            ViewBag.users = MvcApplication._service.GetUsersIdAndNames();
+            ViewBag.companys = MvcApplication._service.GetCompanysIdAndNames();
+
             return View();
         }
         [HttpPost]
@@ -22,12 +23,8 @@ namespace Some.Controllers
         {
             string some = formCollection["CompanyDropDown"];
             string some2 = formCollection["UserDropDown"];
-            MvcApplication.Service.SetCompanyToUser(some,some2);
+            MvcApplication._service.SetCompanyToUser(some,some2);
             
-        }
-
-        
-
-        
+        }        
     }
 }
