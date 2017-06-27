@@ -1,4 +1,5 @@
-﻿using Castle.Core.Logging;
+﻿using System;
+using Castle.Core.Logging;
 using SomeLogicLibrary.Interface;
 
 namespace SomeLogicLibrary.Class
@@ -9,7 +10,7 @@ namespace SomeLogicLibrary.Class
 
         public EmailNotificator(ILogger logger)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException("logger");
         }
 
         public void Send(string message)

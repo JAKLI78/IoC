@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Components.DictionaryAdapter;
@@ -11,7 +12,7 @@ namespace Some.Controllers
 
         public TestController(IActionInvoker actionInvoker)
         {
-            ActionInvoker = actionInvoker;
+            ActionInvoker = actionInvoker ?? throw new ArgumentNullException("actionInvoker");
         }
 
         // GET: Test
@@ -32,6 +33,7 @@ namespace Some.Controllers
             var companyId = int.Parse(formCollection["CompanyDropDown"]);
             var userId = int.Parse(formCollection["UserDropDown"]);
             _testService.SetCompanyToUser(companyId,userId);
+            _testService.Notify(companyId,userId);
         }        
     }
 }

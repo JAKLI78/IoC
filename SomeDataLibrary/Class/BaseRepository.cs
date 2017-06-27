@@ -14,7 +14,7 @@ namespace SomeDataLibrary.Class
 
         public BaseRepository(DbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException("context");
             _dbSet = context.Set<TEntity>();
         }
 

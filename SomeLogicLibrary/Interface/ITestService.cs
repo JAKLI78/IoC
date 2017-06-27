@@ -8,5 +8,6 @@ namespace SomeLogicLibrary.Interface
         void SetCompanyToUser(int companyId, int userId);
         IEnumerable<User> GetUsersIdAndNames();
         IEnumerable<Company> GetCompanysIdAndNames();
+        void Notify(int companyId, int userId);
     }
 }

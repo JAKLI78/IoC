@@ -13,7 +13,7 @@ namespace SomeDataLibrary.Class
 
         public UserRepository(DbContext context,ILogger logger) : base(context)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException("logger");
         }
 
         public void AddUserToCompany(int companyID,int userID)

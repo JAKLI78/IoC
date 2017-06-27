@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SomeDataLibrary.Interface;
 using SomeDataLibrary.Model;
 using SomeLogicLibrary.Interface;
@@ -13,15 +14,20 @@ namespace SomeLogicLibrary.Class
 
         public TestService(INotificator[] notificators,IUserRepository userRepository,ICompanyRepository companyRepository)
         {
-            _notificators = notificators;
-            _userRepository = userRepository;
-            _companyRepository = companyRepository;
+            _notificators = notificators ?? throw new ArgumentNullException("notificators");
+            _userRepository = userRepository ?? throw new ArgumentNullException("userRepository");
+            _companyRepository = companyRepository ?? throw new ArgumentNullException("companyRepository");
         }
 
         public void SetCompanyToUser(int companyId, int userId)
         {
             
             _userRepository.AddUserToCompany(companyId,userId);
+            
+        }
+
+        public void Notify(int companyId,int userId)
+        {
             foreach (var notificator in _notificators)
             {
                 notificator.Send(

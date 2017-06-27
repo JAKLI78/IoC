@@ -10,7 +10,7 @@ namespace Some.Controllers
 
         public SomeActionInvoker(DbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException("context");
         }
 
         public override bool InvokeAction(ControllerContext controllerContext, string actionName)

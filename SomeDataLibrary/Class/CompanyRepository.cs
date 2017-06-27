@@ -13,7 +13,7 @@ namespace SomeDataLibrary.Class
 
         public CompanyRepository(DbContext context,ILogger logger) : base(context)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException("logger");
         }
 
         public int? GetCompanyIdByName(string companyName)
