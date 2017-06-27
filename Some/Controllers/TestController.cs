@@ -1,33 +1,37 @@
-﻿using System.Web.Mvc;
-using Castle.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Castle.Components.DictionaryAdapter;
 using Some.Models;
-using SomeLogicLibrary.Interface;
 
 namespace Some.Controllers
 {
     public class TestController :BaseController 
     {
-        
-        public ITestService _testService
+
+        public TestController(IActionInvoker actionInvoker)
         {
-            get;
-            set;
+            ActionInvoker = actionInvoker;
         }
 
         // GET: Test
         public ActionResult Base()
         {
-            ViewBag.users = _testService.GetUsersIdAndNames();
-            ViewBag.companys = _testService.GetCompanysIdAndNames();
+            List<UserView> userViews = new EditableList<UserView>();
+            userViews.AddRange(_testService.GetUsersIdAndNames().Select(user => new UserView() {CompanyId = user.CompanyId, Id = user.Id, Name = user.Name}));
 
-            return View();
+            List<CompanyView> companyViews = new EditableList<CompanyView>();
+            companyViews.AddRange(_testService.GetCompanysIdAndNames().Select(companys => new CompanyView() {CompanyName = companys.CompanyName, Id = companys.Id}));
+
+            var model = new AllView(){CompanyViews =  companyViews,UserViews = userViews};
+            return View(model);
         }
         [HttpPost]
-        public void AddToUser(UserToCompanyView userToCompany)
+        public void AddToUser(AllView userToCompany,FormCollection formCollection)
         {
-
-            _testService.SetCompanyToUser(userToCompany.CompanyID,userToCompany.UserID);
-            
+            var companyId = int.Parse(formCollection["CompanyDropDown"]);
+            var userId = int.Parse(formCollection["UserDropDown"]);
+            _testService.SetCompanyToUser(companyId,userId);
         }        
     }
 }

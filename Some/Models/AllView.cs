@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Some.Models
 {
@@ -9,11 +6,5 @@ namespace Some.Models
     {
         public List<UserView> UserViews { get; set; }
         public List<CompanyView> CompanyViews { get; set; }
-
-        public AllView(List<UserView> userViews, List<CompanyView> companyViews)
-        {
-            UserViews = userViews;
-            CompanyViews = companyViews;
-        }
     }
 }

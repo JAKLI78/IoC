@@ -5,6 +5,10 @@ namespace Some.Controllers
 {
     public class BaseController : Controller
     {
-                     
+        public ITestService _testService
+        {
+            get;
+            set;
+        }
     }
 }

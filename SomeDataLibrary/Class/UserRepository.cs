@@ -32,7 +32,7 @@ namespace SomeDataLibrary.Class
             }
             catch (Exception e)
             {
-                _logger.Debug(e.Message);
+                _logger.Error(e.Message);
                 return null;
             }             
         }

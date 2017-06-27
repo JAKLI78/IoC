@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Castle.Components.DictionaryAdapter;
 using SomeDataLibrary.Interface;
+using SomeDataLibrary.Model;
 using SomeLogicLibrary.Interface;
 
 namespace SomeLogicLibrary.Class
@@ -30,18 +29,15 @@ namespace SomeLogicLibrary.Class
             }
         }
 
-        public  List<string> GetUsersIdAndNames()
-        {
-            List<string> resulList = new EditableList <string>();
-            resulList.AddRange(_userRepository.Get().Select(user =>user.Name));
-            return resulList;
+        public  IEnumerable<User> GetUsersIdAndNames()
+        {            
+            return _userRepository.Get();
         }
 
-        public List<string> GetCompanysIdAndNames()
+        public IEnumerable<Company> GetCompanysIdAndNames()
         {
-            List<string> resulList = new EditableList<string>();
-            resulList.AddRange(_companyRepository.Get().Select(company => company.CompanyName));
-            return resulList;
+
+            return _companyRepository.Get();
         }
     }        
 }

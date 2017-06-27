@@ -1,4 +1,4 @@
-﻿@model Some.Models.AllView;
+﻿@model Some.Models.AllView
 
 @{
     Layout = null;
@@ -8,17 +8,16 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Base</title>
+    <title>title</title>
 </head>
 <body>
 <div>
-    @using (Html.BeginForm("AddToUser","Test"))
-    {
-        <p>Company: @Html.DropDownList("CompanyDropDown",new SelectList(Model.CompanyViews,"Id","CompanyName")) </p>
-        <p>user: @Html.DropDownList("UserDropDown", new SelectList(Model.UserViews,"Id","Name")) </p>
-        <button type="submit" value="Some"></button>
-    }
+@using (Html.BeginForm("AddToUser", "Test"))
+{
+    <p>Company: @Html.DropDownList("CompanyDropDown", new SelectList(Model.CompanyViews, "Id", "CompanyName")) </p>
+    <p>user: @Html.DropDownList("UserDropDown", new SelectList(Model.UserViews, "Id", "Name")) </p>
+    <button type="submit">Some</button>
+}
 </div>
 </body>
 </html>

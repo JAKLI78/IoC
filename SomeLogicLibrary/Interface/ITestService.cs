@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using SomeDataLibrary.Model;
 
 namespace SomeLogicLibrary.Interface
 {
     public interface ITestService
     {
         void SetCompanyToUser(int companyId, int userId);
-        List<string> GetUsersIdAndNames();
-        List<string> GetCompanysIdAndNames();
+        IEnumerable<User> GetUsersIdAndNames();
+        IEnumerable<Company> GetCompanysIdAndNames();
     }
 }
