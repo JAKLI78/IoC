@@ -12,7 +12,7 @@ namespace Some.Controllers
 
         public TestController(IActionInvoker actionInvoker)
         {
-            ActionInvoker = actionInvoker ?? throw new ArgumentNullException("actionInvoker");
+            ActionInvoker = actionInvoker;
         }
 
         // GET: Test
