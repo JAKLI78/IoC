@@ -44,11 +44,7 @@ namespace Some
             _container.Install(FromAssembly.Named("SomeLogicLibrary"));
             _container.Install(FromAssembly.This());
 
-
             var some = "mkm";
-
-
-
         }
 
         protected void Application_End()
