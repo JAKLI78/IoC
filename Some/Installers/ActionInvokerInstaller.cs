@@ -2,7 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Some.Controllers;
+using Some.ActionInvoker;
 
 namespace Some.Installers
 {

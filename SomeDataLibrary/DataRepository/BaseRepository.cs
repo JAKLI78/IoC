@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using SomeDataLibrary.Interface;
 
-namespace SomeDataLibrary.Class
+namespace SomeDataLibrary.DataRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
@@ -14,7 +14,8 @@ namespace SomeDataLibrary.Class
 
         public BaseRepository(DbContext context)
         {
-            _context = context ?? throw new ArgumentNullException("context");
+            _context = context ?? throw new ArgumentNullException(nameof(context),
+                           $"{nameof(context)} cannot be null.");
             _dbSet = context.Set<TEntity>();
         }
 

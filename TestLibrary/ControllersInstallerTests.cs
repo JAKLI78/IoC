@@ -5,7 +5,6 @@ using Castle.Core;
 using Castle.Core.Internal;
 using Castle.MicroKernel;
 using Castle.Windsor;
-using Some.Controllers;
 using Some.Installers;
 using Xunit;
 
@@ -13,23 +12,13 @@ namespace TestLibrary
 {
     public class ControllersInstallerTests
     {
-        private IWindsorContainer contanierWithControllers;
-
         public ControllersInstallerTests()
         {
             contanierWithControllers = new WindsorContainer()
                 .Install(new ControllerInstaller());
         }
 
-        [Fact]
-        public void All_controllers_implement_IController()
-        {
-            var allHandlers = GetAllHandlers(contanierWithControllers);
-            var controllerHandlers = GetHandlersFor(typeof(IController), contanierWithControllers);
-
-            Assert.NotEmpty(allHandlers);
-            Assert.Equal(allHandlers, controllerHandlers);
-        }
+        private readonly IWindsorContainer contanierWithControllers;
 
         private IHandler[] GetAllHandlers(IWindsorContainer container)
         {
@@ -39,14 +28,6 @@ namespace TestLibrary
         private IHandler[] GetHandlersFor(Type type, IWindsorContainer container)
         {
             return container.Kernel.GetAssignableHandlers(type);
-        }
-
-        [Fact]
-        public void All_controllers_are_registred()
-        {
-            var allControllers = GetPublicClassesForApplicationAssembly(c => c.Is<IController>());
-            var registeredControllers = GetImplementationTypesFor(typeof(IController), contanierWithControllers);
-            Assert.Equal(allControllers, registeredControllers);
         }
 
         private Type[] GetImplementationTypesFor(Type type, IWindsorContainer container)
@@ -82,6 +63,14 @@ namespace TestLibrary
         }
 
         [Fact]
+        public void All_controllers_are_registred()
+        {
+            var allControllers = GetPublicClassesForApplicationAssembly(c => c.Is<IController>());
+            var registeredControllers = GetImplementationTypesFor(typeof(IController), contanierWithControllers);
+            Assert.Equal(allControllers, registeredControllers);
+        }
+
+        [Fact]
         public void All_controllers_are_transient()
         {
             var nonTransientControllers = GetHandlersFor(typeof(IController), contanierWithControllers)
@@ -97,6 +86,16 @@ namespace TestLibrary
                 .Where(c => c.ComponentModel.Services.Single() != c.ComponentModel.Implementation)
                 .ToArray();
             Assert.Empty(controllerWithWrongName);
+        }
+
+        [Fact]
+        public void All_controllers_implement_IController()
+        {
+            var allHandlers = GetAllHandlers(contanierWithControllers);
+            var controllerHandlers = GetHandlersFor(typeof(IController), contanierWithControllers);
+
+            Assert.NotEmpty(allHandlers);
+            Assert.Equal(allHandlers, controllerHandlers);
         }
     }
 }

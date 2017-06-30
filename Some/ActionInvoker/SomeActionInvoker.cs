@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Web.Mvc;
 
-namespace Some.Controllers
+namespace Some.ActionInvoker
 {
     public class SomeActionInvoker : ControllerActionInvoker
     {
@@ -10,36 +10,27 @@ namespace Some.Controllers
 
         public SomeActionInvoker(DbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context),
+                           $"{nameof(context)} cannot be null.");
         }
 
         public override bool InvokeAction(ControllerContext controllerContext, string actionName)
         {
-            if (actionName.Equals("AddToUser", StringComparison.CurrentCultureIgnoreCase))
+            var transaction = _context.Database.BeginTransaction();
+            using (transaction)
             {
-                var transaction = _context.Database.BeginTransaction();
-                using (transaction)
+                try
                 {
-                    try
-                    {
-                        var result = base.InvokeAction(controllerContext, actionName);
-                        transaction.Commit();
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    var result = base.InvokeAction(controllerContext, actionName);
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw;
                 }
             }
-            if (actionName.Equals("Base", StringComparison.CurrentCultureIgnoreCase))
-            {
-                //InvokeActionResult(controllerContext, ((TestController)controllerContext.Controller).Base());
-                var result = base.InvokeAction(controllerContext, actionName);
-                return result;
-            }
-            return false;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Components.DictionaryAdapter;
@@ -10,6 +11,8 @@ namespace Some.Controllers
     {
         public TestController(IActionInvoker actionInvoker)
         {
+            if (actionInvoker == null)
+                throw new ArgumentNullException(nameof(actionInvoker), $"{nameof(actionInvoker)} cannot be null.");
             ActionInvoker = actionInvoker;
         }
 
@@ -24,6 +27,7 @@ namespace Some.Controllers
         {
             _testService.SetCompanyToUser(userToCompany.CompanyId, userToCompany.UserId);
             _testService.Notify(userToCompany.CompanyId, userToCompany.UserId);
+
             return View("Base", BuildModelForView());
         }
 

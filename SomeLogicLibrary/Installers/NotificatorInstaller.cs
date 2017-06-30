@@ -1,8 +1,8 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using SomeLogicLibrary.Class;
 using SomeLogicLibrary.Interface;
+using SomeLogicLibrary.Notificators;
 
 namespace SomeLogicLibrary.Installers
 {
@@ -12,7 +12,8 @@ namespace SomeLogicLibrary.Installers
         {
             container.Register(Component.For<INotificator>().ImplementedBy<EmailNotificator>()
                 .LifestylePerWebRequest());
-            container.Register(Component.For<INotificator>().ImplementedBy<SmsNotificator>().LifestylePerWebRequest());
+            container.Register(Component.For<INotificator>().ImplementedBy<SmsNotificator>()
+                .LifestylePerWebRequest());
         }
     }
 }

@@ -5,7 +5,7 @@ using Castle.Core.Logging;
 using SomeDataLibrary.Interface;
 using SomeDataLibrary.Model;
 
-namespace SomeDataLibrary.Class
+namespace SomeDataLibrary.DataRepository
 {
     public class CompanyRepository : BaseRepository<Company>, ICompanyRepository
     {
@@ -13,7 +13,8 @@ namespace SomeDataLibrary.Class
 
         public CompanyRepository(DbContext context, ILogger logger) : base(context)
         {
-            _logger = logger ?? throw new ArgumentNullException("logger");
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger),
+                $"{nameof(logger)} cannot be null.");
         }
 
         public int? GetCompanyIdByName(string companyName)

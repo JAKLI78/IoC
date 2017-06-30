@@ -1,8 +1,8 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using SomeLogicLibrary.Class;
 using SomeLogicLibrary.Interface;
+using SomeLogicLibrary.Service;
 
 namespace Some.Installers
 {

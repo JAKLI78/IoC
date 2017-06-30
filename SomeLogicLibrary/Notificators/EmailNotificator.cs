@@ -2,7 +2,7 @@
 using Castle.Core.Logging;
 using SomeLogicLibrary.Interface;
 
-namespace SomeLogicLibrary.Class
+namespace SomeLogicLibrary.Notificators
 {
     public class EmailNotificator : INotificator
     {
@@ -10,7 +10,7 @@ namespace SomeLogicLibrary.Class
 
         public EmailNotificator(ILogger logger)
         {
-            _logger = logger ?? throw new ArgumentNullException("logger");
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger), $"{nameof(logger)} cannot be null.");
         }
 
         public void Send(string message)

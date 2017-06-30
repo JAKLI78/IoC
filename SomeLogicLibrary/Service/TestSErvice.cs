@@ -4,7 +4,7 @@ using SomeDataLibrary.Interface;
 using SomeDataLibrary.Model;
 using SomeLogicLibrary.Interface;
 
-namespace SomeLogicLibrary.Class
+namespace SomeLogicLibrary.Service
 {
     public class TestService : ITestService
     {
@@ -15,9 +15,15 @@ namespace SomeLogicLibrary.Class
         public TestService(INotificator[] notificators, IUserRepository userRepository,
             ICompanyRepository companyRepository)
         {
-            _notificators = notificators ?? throw new ArgumentNullException("notificators");
-            _userRepository = userRepository ?? throw new ArgumentNullException("userRepository");
-            _companyRepository = companyRepository ?? throw new ArgumentNullException("companyRepository");
+            _notificators = notificators ??
+                            throw new ArgumentNullException(nameof(notificators),
+                                $"{nameof(notificators)} cannot be null.");
+            _userRepository = userRepository ??
+                              throw new ArgumentNullException(nameof(userRepository),
+                                  $"{nameof(userRepository)} cannot be null.");
+            _companyRepository = companyRepository ??
+                                 throw new ArgumentNullException(nameof(companyRepository),
+                                     $"{nameof(companyRepository)} cannot be null.");
         }
 
         public void SetCompanyToUser(int companyId, int userId)
