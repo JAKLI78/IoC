@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\EmailNotificator.cs" />
-    <Compile Include="Class\SmsNotificator.cs" />
-    <Compile Include="Class\TestService.cs" />
+    <Compile Include="Notificators\EmailNotificator.cs" />
+    <Compile Include="Notificators\SmsNotificator.cs" />
+    <Compile Include="Service\TestService.cs" />
     <Compile Include="Installers\DataInstaller.cs" />
     <Compile Include="Installers\NotificatorInstaller.cs" />
     <Compile Include="Interface\INotificator.cs" />

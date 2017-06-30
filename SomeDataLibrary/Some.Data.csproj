@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\BaseRepository.cs" />
-    <Compile Include="Class\CompanyRepository.cs" />
-    <Compile Include="Class\UserRepository.cs" />
+    <Compile Include="DataRepository\BaseRepository.cs" />
+    <Compile Include="DataRepository\CompanyRepository.cs" />
+    <Compile Include="DataRepository\UserRepository.cs" />
     <Compile Include="Interface\ICompanyRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
