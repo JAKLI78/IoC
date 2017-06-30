@@ -20,6 +20,7 @@ namespace SomeDataLibrary.DataRepository
         public void AddUserToCompany(int companyID, int userID)
         {
             var userToUpdate = FindById(userID);
+            if (userToUpdate == null) return;
             userToUpdate.CompanyId = companyID;
             Update(userToUpdate);
         }

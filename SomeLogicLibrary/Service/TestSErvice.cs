@@ -33,6 +33,8 @@ namespace SomeLogicLibrary.Service
 
         public void Notify(int companyId, int userId)
         {
+            if ((companyId == 0) | (userId == 0))
+                return;
             foreach (var notificator in _notificators)
                 notificator.Send(
                     $"user {_userRepository.FindById(userId).Name} now working in company {_companyRepository.FindById(companyId).CompanyName}");

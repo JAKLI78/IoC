@@ -28,16 +28,16 @@ namespace Some.Controllers
             _testService.SetCompanyToUser(userToCompany.CompanyId, userToCompany.UserId);
             _testService.Notify(userToCompany.CompanyId, userToCompany.UserId);
 
-            return View("Base", BuildModelForView());
+            return RedirectToAction("Base");
         }
 
         private AllView BuildModelForView()
         {
-            List<UserView> userViews = new EditableList<UserView>();
+            List<UserView> userViews = new EditableList<UserView> {new UserView {Id = 0, Name = ""}};
             userViews.AddRange(_testService.GetUsersIdAndNames()
                 .Select(user => new UserView {CompanyId = user.CompanyId, Id = user.Id, Name = user.Name}));
 
-            List<CompanyView> companyViews = new EditableList<CompanyView>();
+            List<CompanyView> companyViews = new EditableList<CompanyView> {new CompanyView {Id = 0, CompanyName = ""}};
             companyViews.AddRange(_testService.GetCompanysIdAndNames()
                 .Select(companys => new CompanyView {CompanyName = companys.CompanyName, Id = companys.Id}));
 
