@@ -10,8 +10,10 @@ namespace Some.ActionInvoker
 
         public SomeActionInvoker(DbContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context),
-                           $"{nameof(context)} cannot be null.");
+            if (context == null)
+                throw new ArgumentNullException(nameof(context),
+                    $"{nameof(context)} cannot be null.");
+            _context = context;
         }
 
         public override bool InvokeAction(ControllerContext controllerContext, string actionName)
