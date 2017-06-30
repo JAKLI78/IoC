@@ -7,16 +7,16 @@ using SomeDataLibrary.Model;
 
 namespace SomeDataLibrary.Class
 {
-    public class UserRepository : BaseRepository<User>,IUserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
-        public UserRepository(DbContext context,ILogger logger) : base(context)
+        public UserRepository(DbContext context, ILogger logger) : base(context)
         {
             _logger = logger ?? throw new ArgumentNullException("logger");
         }
 
-        public void AddUserToCompany(int companyID,int userID)
+        public void AddUserToCompany(int companyID, int userID)
         {
             var userToUpdate = FindById(userID);
             userToUpdate.CompanyId = companyID;
@@ -34,7 +34,7 @@ namespace SomeDataLibrary.Class
             {
                 _logger.Error(e.Message);
                 return null;
-            }             
+            }
         }
     }
 }

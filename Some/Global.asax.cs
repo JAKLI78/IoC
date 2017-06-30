@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Entity;
+using System.Web;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Castle.MicroKernel.Registration;
@@ -7,15 +9,13 @@ using Castle.Windsor;
 using Castle.Windsor.Installer;
 using Some.Plumbing;
 using SomeDataLibrary.Model;
-using SomeLogicLibrary.Interface;
-
 
 namespace Some
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         private static IWindsorContainer _container;
-        
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -30,11 +30,11 @@ namespace Some
         {
             _container = new WindsorContainer();
             _container.Kernel.Resolver.AddSubResolver(new CollectionResolver(_container.Kernel));
-            _container.Register(Component.For<System.Data.Entity.DbContext>().ImplementedBy<DataContext>().LifestyleTransient());
+            _container.Register(Component.For<DbContext>().ImplementedBy<DataContext>().LifestyleTransient());
             var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
             _container.Install(FromAssembly.This());
-            _container.Install(FromAssembly.Named("SomeLogicLibrary"));            
+            _container.Install(FromAssembly.Named("SomeLogicLibrary"));
         }
 
         protected void Application_End()
@@ -42,5 +42,4 @@ namespace Some
             _container.Dispose();
         }
     }
-    
 }

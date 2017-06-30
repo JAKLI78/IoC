@@ -6,13 +6,14 @@ using SomeLogicLibrary.Interface;
 
 namespace SomeLogicLibrary.Class
 {
-    public class TestService :ITestService
+    public class TestService : ITestService
     {
-        private readonly IUserRepository _userRepository;
         private readonly ICompanyRepository _companyRepository;
         private readonly INotificator[] _notificators;
+        private readonly IUserRepository _userRepository;
 
-        public TestService(INotificator[] notificators,IUserRepository userRepository,ICompanyRepository companyRepository)
+        public TestService(INotificator[] notificators, IUserRepository userRepository,
+            ICompanyRepository companyRepository)
         {
             _notificators = notificators ?? throw new ArgumentNullException("notificators");
             _userRepository = userRepository ?? throw new ArgumentNullException("userRepository");
@@ -21,29 +22,24 @@ namespace SomeLogicLibrary.Class
 
         public void SetCompanyToUser(int companyId, int userId)
         {
-            
-            _userRepository.AddUserToCompany(companyId,userId);
-            
+            _userRepository.AddUserToCompany(companyId, userId);
         }
 
-        public void Notify(int companyId,int userId)
+        public void Notify(int companyId, int userId)
         {
             foreach (var notificator in _notificators)
-            {
                 notificator.Send(
                     $"user {_userRepository.FindById(userId).Name} now working in company {_companyRepository.FindById(companyId).CompanyName}");
-            }
         }
 
-        public  IEnumerable<User> GetUsersIdAndNames()
-        {            
+        public IEnumerable<User> GetUsersIdAndNames()
+        {
             return _userRepository.Get();
         }
 
         public IEnumerable<Company> GetCompanysIdAndNames()
         {
-
             return _companyRepository.Get();
         }
-    }        
+    }
 }

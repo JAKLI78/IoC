@@ -4,9 +4,9 @@ using System.Web.Mvc;
 
 namespace Some.Controllers
 {
-    public class SomeActionInvoker:ControllerActionInvoker
+    public class SomeActionInvoker : ControllerActionInvoker
     {
-        private DbContext _context;
+        private readonly DbContext _context;
 
         public SomeActionInvoker(DbContext context)
         {
@@ -22,7 +22,7 @@ namespace Some.Controllers
                 {
                     try
                     {
-                        var result = base.InvokeAction(controllerContext, actionName);               
+                        var result = base.InvokeAction(controllerContext, actionName);
                         transaction.Commit();
                         return result;
                     }
@@ -33,10 +33,10 @@ namespace Some.Controllers
                     }
                 }
             }
-            if (actionName.Equals("Base",StringComparison.CurrentCultureIgnoreCase))
+            if (actionName.Equals("Base", StringComparison.CurrentCultureIgnoreCase))
             {
                 //InvokeActionResult(controllerContext, ((TestController)controllerContext.Controller).Base());
-                var result = base.InvokeAction(controllerContext,actionName);
+                var result = base.InvokeAction(controllerContext, actionName);
                 return result;
             }
             return false;

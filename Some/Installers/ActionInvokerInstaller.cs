@@ -1,15 +1,16 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System.Web.Mvc;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Some.Controllers;
 
 namespace Some.Installers
 {
-    public class ActionInvokerInstaller:IWindsorInstaller
+    public class ActionInvokerInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<System.Web.Mvc.IActionInvoker>().ImplementedBy<SomeActionInvoker>()
+            container.Register(Component.For<IActionInvoker>().ImplementedBy<SomeActionInvoker>()
                 .LifestylePerWebRequest());
         }
     }

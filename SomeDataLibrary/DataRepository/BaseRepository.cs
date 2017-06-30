@@ -9,8 +9,8 @@ namespace SomeDataLibrary.Class
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private DbContext _context;
-        private DbSet<TEntity> _dbSet;
+        private readonly DbContext _context;
+        private readonly DbSet<TEntity> _dbSet;
 
         public BaseRepository(DbContext context)
         {
@@ -51,23 +51,22 @@ namespace SomeDataLibrary.Class
             _context.SaveChanges();
         }
 
-        public IEnumerable<TEntity> GetWithInclude(params Expression<Func<TEntity, Object>>[] includeProperties)
+        public IEnumerable<TEntity> GetWithInclude(params Expression<Func<TEntity, object>>[] includeProperties)
         {
             return Include(includeProperties).ToList();
         }
 
         public IEnumerable<TEntity> GetWithInclude(Func<TEntity, bool> predicate,
-            params Expression<Func<TEntity, Object>>[] includeProperties)
+            params Expression<Func<TEntity, object>>[] includeProperties)
         {
             var query = Include(includeProperties);
             return query.Where(predicate).ToList();
         }
 
-        private IQueryable<TEntity> Include(params Expression<Func<TEntity, Object>>[] includeProperties)
+        private IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
         {
             IQueryable<TEntity> query = _dbSet.AsNoTracking();
             return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-
         }
     }
 }

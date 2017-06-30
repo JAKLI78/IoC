@@ -7,11 +7,11 @@ using SomeDataLibrary.Model;
 
 namespace SomeDataLibrary.Class
 {
-    public class CompanyRepository:BaseRepository<Company>,ICompanyRepository
+    public class CompanyRepository : BaseRepository<Company>, ICompanyRepository
     {
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
-        public CompanyRepository(DbContext context,ILogger logger) : base(context)
+        public CompanyRepository(DbContext context, ILogger logger) : base(context)
         {
             _logger = logger ?? throw new ArgumentNullException("logger");
         }
@@ -28,7 +28,6 @@ namespace SomeDataLibrary.Class
                 _logger.Error(e.Message);
                 return null;
             }
-            
         }
     }
 }

@@ -4,7 +4,7 @@ using SomeLogicLibrary.Interface;
 
 namespace SomeLogicLibrary.Class
 {
-    public class SmsNotificator:INotificator
+    public class SmsNotificator : INotificator
     {
         private readonly ILogger _logger;
 
@@ -12,6 +12,7 @@ namespace SomeLogicLibrary.Class
         {
             _logger = logger ?? throw new ArgumentNullException("logger");
         }
+
         public void Send(string message)
         {
             _logger.Info(message);

@@ -10,8 +10,9 @@ namespace SomeLogicLibrary.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<INotificator>().ImplementedBy<EmailNotificator>().LifestylePerWebRequest());
-            container.Register(Component.For<INotificator>().ImplementedBy<SmsNotificator>().LifestylePerWebRequest());            
+            container.Register(Component.For<INotificator>().ImplementedBy<EmailNotificator>()
+                .LifestylePerWebRequest());
+            container.Register(Component.For<INotificator>().ImplementedBy<SmsNotificator>().LifestylePerWebRequest());
         }
     }
 }

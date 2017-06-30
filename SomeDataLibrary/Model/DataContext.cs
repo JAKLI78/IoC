@@ -2,15 +2,13 @@
 
 namespace SomeDataLibrary.Model
 {
-    public class DataContext:DbContext
+    public class DataContext : DbContext
     {
-        public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-
-        public DataContext():base("DbConnect")
+        public DataContext() : base("DbConnect")
         {
-            
         }
 
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

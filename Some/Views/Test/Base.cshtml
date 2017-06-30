@@ -12,12 +12,12 @@
 </head>
 <body>
 <div>
-@using (Html.BeginForm("AddToUser", "Test"))
-{
-    <p>Company: @Html.DropDownList("CompanyDropDown", new SelectList(Model.CompanyViews, "Id", "CompanyName")) </p>
-    <p>user: @Html.DropDownList("UserDropDown", new SelectList(Model.UserViews, "Id", "Name")) </p>
-    <button type="submit">Some</button>
-}
+    @using (Html.BeginForm("AddToUser", "Test"))
+    {
+        <p>Company: @Html.DropDownList("CompanyId", new SelectList(Model.CompanyViews, "Id", "CompanyName")) </p>
+        <p>user: @Html.DropDownList("UserId", new SelectList(Model.UserViews, "Id", "Name")) </p>
+        <button type="submit">Some</button>
+    }
 </div>
 </body>
 </html>
