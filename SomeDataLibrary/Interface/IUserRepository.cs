@@ -4,6 +4,6 @@ namespace SomeDataLibrary.Interface
 {
     public interface IUserRepository : IRepository<User>
     {
-        void AddUserToCompany(int companyID, int userID);
+        void AddUserToCompany(int companyId, int userId);
     }
 }

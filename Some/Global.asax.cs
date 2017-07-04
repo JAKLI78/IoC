@@ -34,7 +34,7 @@ namespace Some
             var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
             _container.Install(FromAssembly.This());
-            _container.Install(FromAssembly.Named("SomeLogicLibrary"));
+            _container.Install(FromAssembly.Named("Some.Core"));
         }
 
         protected void Application_End()

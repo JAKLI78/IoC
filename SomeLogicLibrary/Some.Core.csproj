@@ -7,8 +7,8 @@
     <ProjectGuid>{4BF90EAF-06EC-4F7F-BB46-7657CEDC46CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SomeLogicLibrary</RootNamespace>
-    <AssemblyName>SomeLogicLibrary</AssemblyName>
+    <RootNamespace>Some.Core</RootNamespace>
+    <AssemblyName>Some.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

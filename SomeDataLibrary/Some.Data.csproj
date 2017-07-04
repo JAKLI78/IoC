@@ -7,8 +7,8 @@
     <ProjectGuid>{996D6CD9-9650-49E1-BC8F-17D3B3EF8A77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SomeDataLibrary</RootNamespace>
-    <AssemblyName>SomeDataLibrary</AssemblyName>
+    <RootNamespace>Some.Data</RootNamespace>
+    <AssemblyName>Some.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
